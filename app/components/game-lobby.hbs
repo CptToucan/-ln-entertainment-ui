@@ -1,0 +1,70 @@
+<div class="px-2 flex flex-1 flex-col">
+  {{#if this.gameState.inProgress}}
+    <GameArea @gameState={{this.gameState}} @socket={{this.socket}} />
+  {{else}}
+    {{#unless @host}}
+      {{#unless this.connectedGamecode}}
+        <div class="flex flex-col">
+          <label class="block text-xl font-medium text-white">
+            Enter gamecode
+          </label>
+          <div class="mt-1 relative rounded-md shadow-sm">
+            <Input
+              class="focus:ring-red-500 focus:border-red-500 block w-full pl-4 pr-4 sm:text-sm border-gray-300 rounded-md"
+              @value={{this.connectGamecode}}
+              @enter={{fn this.connectToGame this.connectGamecode}}
+              autofocus={{true}}
+            />
+          </div>
+        </div>
+        <div class="flex flex-row w-full pt-2">
+          <button
+            type="button"
+            class="flex-auto mb-2 bottom-0 shadow-md border-solid border-2 border-red-500 px-4 py-5 rounded hover:bg-red-500 text-white font-semibold"
+            {{on "click" (fn this.connectToGame this.connectGamecode)}}
+          >
+            Submit
+          </button>
+        </div>
+      {{/unless}}
+    {{/unless}}
+
+    {{#if this.connectedGamecode}}
+      <div
+        class="text-white text-center text-2xl"
+        style="font-family: monospace;"
+      >
+        {{this.connectedGamecode}}
+      </div>
+
+      <ul class="px-2 pb-4">
+        <span class="text-white text-lg">
+          Connected Players:
+        </span>
+
+        {{#each this.gameState.players as |player|}}
+          <li class="text-white text-center">
+            {{player.displayName}}
+          </li>
+        {{/each}}
+      </ul>
+
+      {{#unless @host}}
+        <span class="text-white text-lg">
+          Waiting for host to start...
+        </span>
+      {{/unless}}
+    {{/if}}
+
+    {{#if @host}}
+      <div class="w-full flex justify-center">
+        <button
+          class="flex-auto mb-2 bottom-0 shadow-md border-solid border-2 border-red-500 px-4 py-5 rounded hover:bg-red-500 text-white font-semibold"
+          {{on "click" (fn this.startGame)}}
+        >
+          Start Game
+        </button>
+      </div>
+    {{/if}}
+  {{/if}}
+</div>
