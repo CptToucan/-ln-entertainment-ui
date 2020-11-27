@@ -27,8 +27,7 @@ module.exports = function(defaults) {
             }
           },
           require('tailwindcss-typography'),
-          require('tailwindcss')('./app/tailwind/config.js'),
-          ...isProduction ? [purgeCSS] : []
+          require('tailwindcss')('./app/tailwind/config.js')
         ]
       }
     }

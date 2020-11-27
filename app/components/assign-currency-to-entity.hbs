@@ -1,0 +1,14 @@
+{{#each @entities key="id" as |entity|}}
+  <div
+    class="flex flex-row justify-between border-0 border-b-2 border-red-900 mb-2 pb-2"
+  >
+    {{yield
+      (hash
+        increment=(component "increment-button" clicked=(fn @incrementCurrency entity))
+        decrement=(component "decrement-button" clicked=(fn @decrementCurrency entity))
+        name=(component "entity-name")
+        entity=entity
+      )
+    }}
+  </div>
+{{/each}}

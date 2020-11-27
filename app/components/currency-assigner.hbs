@@ -1,0 +1,19 @@
+{{#unless hideAssign}}
+{{yield
+  (hash
+    submit=(component "submit-button" submit=(queue (fn @submitCurrencyAssignment this.currencyState) (fn (toggle "hideAssign" this))))
+    currencyTracker=(component "currency-tracker" currency=this.totalCurrency)
+    entityAssigner=(component
+      "assign-currency-to-entity"
+      entities=@entities
+      incrementCurrency=(fn this.incrementCurrency)
+      decrementCurrency=(fn this.decrementCurrency)
+    )
+    assignedCurrency=this.currencyState
+  )
+}}
+{{else}}
+  <div class="text-white text-xl">
+    Submitted. Waiting for next phase.
+  </div>
+{{/unless}}

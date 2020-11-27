@@ -14,19 +14,19 @@ export default class GameAreaComponent extends Component {
     return this.playerStateService.getPlayerFromDevice().id;
   }
 
+
   @action
-  incrementBet(horseName) {
-    this.socket.emit("update bet", this.currentPlayerId, {
-      horseName: horseName,
-      difference: 1
-    })
+  submitBets(assignment) {
+    this.socket.emit("update bet", this.currentPlayerId, assignment);
   }
 
   @action
-  decrementBet(horseName) {
-    this.socket.emit("update bet", this.currentPlayerId, {
-      horseName: horseName,
-      difference: -1
-    })
+  assignDrinks(assignment) {
+    this.socket.emit("assign drinks", this.currentPlayerId, assignment);
+  }
+
+  @action
+  refreshPage() {
+    location.reload();
   }
 }

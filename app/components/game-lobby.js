@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import config from "ember-get-config";
 
 export default class GameLobbyComponent extends Component {
 
@@ -13,7 +14,7 @@ export default class GameLobbyComponent extends Component {
   @tracked gameState = null;
 
   didInsertElement() {
-    const socket = this.socketService.socketFor(`http://localhost:3000/horseRacingDeluxe`);
+    const socket = this.socketService.socketFor(`${config.webSocketURL}/horseRacingDeluxe`);
 
     this.socket = socket;
 

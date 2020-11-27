@@ -1,0 +1,36 @@
+{{#let
+  (find-own-player-state @gameState.gameState.playerState) as |ownPlayerState|
+}}
+    <CurrencyAssigner
+      @totalCurrency={{ownPlayerState.totalMoney}}
+      @submitCurrencyAssignment={{fn @assignDrinks}}
+      @entities={{values @gameState.gameState.playerState}} as |ca|
+    >
+      <div class="flex flex-row items-center mb-4">
+        <ca.totalCurrency />
+        <span class="pl-4 font-bold text-white text-2xl">
+          <ca.currencyTracker />
+          remaining bets
+        </span>
+      </div>
+
+      <ca.entityAssigner as |ac|>
+        <ac.decrement />
+        <ac.name>
+          <span class="text-center">
+            {{ac.entity.displayName}}
+          </span>
+          <span class="text-center">
+            {{if
+              (get ca.assignedCurrency ac.entity.id)
+              (get ca.assignedCurrency ac.entity.id)
+              0
+            }} Drinks Assigned
+          </span>
+        </ac.name>
+        <ac.increment />
+      </ca.entityAssigner>
+
+      <ca.submit class="w-full" />
+    </CurrencyAssigner>
+{{/let}}

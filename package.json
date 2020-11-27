@@ -71,6 +71,7 @@
     "@tailwindcss/forms": "^0.2.1",
     "@tailwindcss/typography": "^0.3.1",
     "autoprefixer": "^10.0.2",
+    "ember-get-config": "^0.3.0",
     "tailwindcss-typography": "^3.1.0"
   }
 }

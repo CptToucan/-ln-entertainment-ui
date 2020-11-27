@@ -1,9 +1,13 @@
-<div class="h-full w-full flex justify-center absolute top-0">
-  <div class="text-white text-lg" {{did-insert (fn this.winnerRevealed)}}>
-    {{@gameState.gameState.winnerOfRound}} WON!
+<h1 class="text-white text-2xl mb-2 flex flex-row">
+  <div class="w-12 mr-4">
+    {{@gameState.gameState.timer}}s
   </div>
-</div>
+  Until the next round
+</h1>
 
+<div class="neon pb-5">
+  Race Results
+</div>
 {{#let (sort-race-results @gameState.gameState.race) as |sortedRace|}}
   {{#each sortedRace as |chicken index|}}
     <div
@@ -14,7 +18,7 @@
   {{/each}}
 
   <div>
-    <h5 class="text-white text-xl">
+    <h5 class="flux pt-5">
       Winning Players
     </h5>
     {{#each @gameState.gameState.winningPlayers as |player|}}
@@ -24,7 +28,7 @@
         {{player}}
       </div>
     {{/each}}
-    <h5 class="text-white text-xl">
+    <h5 class="neon text-xl pt-5">
       Losing Players
     </h5>
     {{#each @gameState.gameState.losingPlayers as |player|}}
@@ -34,10 +38,10 @@
         {{player}}
       </div>
     {{/each}}
-    <h5 class="text-white text-xl">
+    <h5 class="flux text-xl pt-5">
       Chickens (Didn't bet)
     </h5>
-    {{#each @gameState.gameState.didNotBet as |player|}}
+    {{#each @gameState.gameState.didNotBetPlayers as |player|}}
       <div
         class="text-white text-lg border-0 border-b-2 border-red-900 mb-2 pb-2"
       >

@@ -1,0 +1,15 @@
+<h1 class="text-white text-2xl mb-2 flex flex-row">
+  Who must drink what?
+</h1>
+
+{{#each (values @gameState.gameState.playerState) as |player|}}
+  <div
+    class="flex flex-row justify-between border-0 border-b-2 border-red-900 mb-2 pb-2 text-white text-xl"
+  >
+    {{player.displayName}} must drink {{if
+      player.drinksToDrink
+      player.drinksToDrink
+      0
+    }} drinks(s)
+  </div>
+{{/each}}

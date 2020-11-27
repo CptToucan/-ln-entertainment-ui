@@ -7,8 +7,8 @@ export default class RaceViewComponent extends Component {
     anime({
       targets: element,
       translateX: {
-        value: `${Math.floor( position * 100 / 10000)}%`,
-        duration: 2000,
+        value: `calc(${Math.floor( position * 100 / 10000)}% - 4rem)`,
+        duration: 0,
         easing: "linear",
       },
     });
@@ -19,7 +19,7 @@ export default class RaceViewComponent extends Component {
     anime({
       targets: element,
       translateX: {
-        value: `${Math.floor( position * 100 / 10000)}%`,
+        value: `calc(${Math.floor( position * 100 / 10000)}% - 4rem)`,
         duration: 2000,
         easing: "linear",
       },
